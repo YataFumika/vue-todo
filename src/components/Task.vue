@@ -2,10 +2,10 @@
   <div>
     {{ msg }}
     <form id="form">
-      <button>タスクを増やす</button>
+      <button type="button" v-on:click="addTask()">タスクを増やす</button>
       <button>タスクを消す</button>
-      <p>input: <input type="text" name="title" /></p>
-      <p>task:</p>
+      <p>input: <input type="text" v-model="newTask" /></p>
+      <p>task: {{ newTask }}</p>
     </form>
     <div class="task-list">
       <label class="item" v-for="task in tasks" v-bind:key="task.id">
@@ -27,7 +27,26 @@ export default {
         { id: 3, text: "vue-loader", done: false },
         { id: 4, text: "awesome-vue", done: true },
       ],
+      newTask: "",
     };
+  },
+  methods: {
+    addTask: function () {
+      let text = this.newTask;
+      text = text.trim();
+      if (!text) {
+        return;
+      }
+      this.tasks.push({
+        id: this.getId(),
+        text: text,
+        done: false,
+      });
+      this.newTask = "";
+    },
+    getId: function () {
+      return this.tasks.length + 1;
+    },
   },
 };
 </script>
