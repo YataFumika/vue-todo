@@ -3,7 +3,9 @@
     {{ msg }}
     <form id="form">
       <button type="button" v-on:click="addTask()">タスクを増やす</button>
-      <button>タスクを消す</button>
+      <button type="button" v-on:click="removeTask()">
+        完了したタスクを消す
+      </button>
       <p>input: <input type="text" v-model="newTask" /></p>
       <p>task: {{ newTask }}</p>
     </form>
@@ -34,6 +36,7 @@ export default {
         { id: 4, text: "awesome-vue", done: true },
       ],
       newTask: "",
+      maxId: 4,
     };
   },
   methods: {
@@ -43,15 +46,21 @@ export default {
       if (!text) {
         return;
       }
+      let id = this.maxId + 1;
       this.tasks.push({
-        id: this.getId(),
+        id: id,
         text: text,
         done: false,
       });
       this.newTask = "";
+      this.maxId = id;
     },
-    getId: function () {
-      return this.tasks.length + 1;
+    removeTask: function () {
+      for (let i = this.tasks.length - 1; i > 0; i--) {
+        if (this.tasks[i].done) {
+          this.tasks.splice(i, 1);
+        }
+      }
     },
   },
 };
