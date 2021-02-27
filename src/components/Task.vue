@@ -8,8 +8,14 @@
       <p>task: {{ newTask }}</p>
     </form>
     <div class="task-list">
-      <label class="item" v-for="task in tasks" v-bind:key="task.id">
-        <input type="checkbox" /><button>EDIT</button> {{ task.text }}
+      <label
+        class="item"
+        v-for="task in tasks"
+        v-bind:key="task.id"
+        v-bind:class="{ 'item--checked': task.done }"
+      >
+        <input type="checkbox" v-model="task.done" /><button>EDIT</button>
+        {{ task.text }}
       </label>
     </div>
   </div>
