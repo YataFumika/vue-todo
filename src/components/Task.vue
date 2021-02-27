@@ -2,14 +2,14 @@
   <div>
     {{ msg }}
     <form id="form">
-      <button>Todoを増やす</button>
-      <button>Todoを消す</button>
+      <button>タスクを増やす</button>
+      <button>タスクを消す</button>
       <p>input: <input type="text" name="title" /></p>
       <p>task:</p>
     </form>
     <div class="task-list">
-      <label class="item" v-for="todo in todos" v-bind:key="todo.id">
-        <input type="checkbox" /><button>EDIT</button> {{ todo.text }}
+      <label class="item" v-for="task in tasks" v-bind:key="task.id">
+        <input type="checkbox" /><button>EDIT</button> {{ task.text }}
       </label>
     </div>
   </div>
@@ -17,11 +17,11 @@
 
 <script>
 export default {
-  name: "todo",
+  name: "task",
   data() {
     return {
-      msg: "Message Todo",
-      todos: [
+      msg: "Message task",
+      tasks: [
         { id: 1, text: "vue-router", done: false },
         { id: 2, text: "vuex", done: false },
         { id: 3, text: "vue-loader", done: false },

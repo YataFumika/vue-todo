@@ -1,19 +1,17 @@
 <template>
   <div id="app">
     <h1>TODO</h1>
-    <router-view name="view one">
-      <Todo msg="sample" />
-    </router-view>
+    <Task msg="sample" />
   </div>
 </template>
 
 <script>
-import Todo from "./components/Todo.vue";
+import Task from "./components/Task.vue";
 
 export default {
   name: "App",
   components: {
-    Todo,
+    Task,
   },
 };
 </script>
