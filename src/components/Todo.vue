@@ -8,17 +8,8 @@
       <p>task:</p>
     </form>
     <div class="task-list">
-      <label class="item">
-        <input type="checkbox" /><button>EDIT</button>vue-router
-      </label>
-      <label class="item">
-        <input type="checkbox" /><button>EDIT</button>vuex
-      </label>
-      <label class="item">
-        <input type="checkbox" /><button>EDIT</button>vue-loader
-      </label>
-      <label class="item item--checked">
-        <input type="checkbox" checked /><button>EDIT</button>awesome-vue
+      <label class="item" v-for="todo in todos" v-bind:key="todo.id">
+        <input type="checkbox" /><button>EDIT</button> {{ todo.text }}
       </label>
     </div>
   </div>
@@ -30,6 +21,12 @@ export default {
   data() {
     return {
       msg: "Message Todo",
+      todos: [
+        { id: 1, text: "vue-router", done: false },
+        { id: 2, text: "vuex", done: false },
+        { id: 3, text: "vue-loader", done: false },
+        { id: 4, text: "awesome-vue", done: true },
+      ],
     };
   },
 };
